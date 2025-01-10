@@ -1,40 +1,48 @@
 import { storageService } from "../async-storage.service.js";
 
+export const songService = {
+    loadSongs,
+    getSongById
+
+}
+
 
 const demoSong = {
     _id:'1234',
     title:'Demo Song',
+    artist:'',
     url:'',
     imgUrl:'',
     addedBy:{},
     addedAt:'time'
 }
 
-const demoStation = {
-    _id:'1234',
-    name: "demo station",
-    tags: [
-        "Sound",
-        "Demo"
-    ],
-    createdBy: {
-        id: "uId",
-        fullname: "Not sure that needed",
-        imgUrl: "url",
-        likedByUsers: "Not sure that needed",
-        songs: [
-            {SongObject1},{Song2}
-        ]
-
-    }
-
-}
-
-const demoUser = {
-    _id: 'u123',
-    likedStations: ['{Mini station?}'],
-    likedStationsIds: ['sid1', 'sid2'],
-    likedSongIds: ['s1001','s1002']
-}
 
 const STORAGE_KEY = 'songs';
+
+
+async function loadSongs (filterBy = { txt:''}) {
+    try {
+        let songs = await storageService.query(STORAGE_KEY)
+        const { txt } = filterBy
+        if(txt) {
+            const regex = new RegExp(filterBy.txt, 'i')
+            songs = songs.filter(song => regex.test(song.name) || regex.test(song.artist))
+        }
+        return songs
+    }catch (err) {
+        console.log('Failed to load song',err)
+    }
+    throw err
+
+}
+
+function getSongById(songId) {
+    return storageService.get(STORAGE_KEY, songId)
+}
+
+function getDefaultFilter() {
+    return {
+        txt: ''
+    }
+}
