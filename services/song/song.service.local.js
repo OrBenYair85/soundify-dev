@@ -2,7 +2,8 @@ import { storageService } from "../async-storage.service.js";
 
 export const songService = {
     loadSongs,
-    getSongById
+    getSongById,
+    getDefaultFilter
 
 }
 
@@ -27,11 +28,11 @@ async function loadSongs (filterBy = { txt:''}) {
         const { txt } = filterBy
         if(txt) {
             const regex = new RegExp(filterBy.txt, 'i')
-            songs = songs.filter(song => regex.test(song.name) || regex.test(song.artist))
+            songs = songs.filter(song => regex.test(song.title) || regex.test(song.artist))
         }
         return songs
     }catch (err) {
-        console.log('Failed to load song',err)
+        console.log('Failed to load songs',err)
     }
     throw err
 

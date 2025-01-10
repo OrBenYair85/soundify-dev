@@ -51,3 +51,12 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+export function playlistNumber(lastNumber) {
+    if(lastNumber){
+        return (lastNumber + 1)
+    }
+    else{
+        return 1
+    }
+}
