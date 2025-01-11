@@ -40,3 +40,24 @@
 .read-the-docs {
   color: #888;
 }
+
+.player-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+.player-btn img{
+  width: 24px; 
+  height: 24px;
+  
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
