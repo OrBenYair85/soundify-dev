@@ -1,14 +1,32 @@
+import { PlayButton } from "./playButton"
 import { useState,useEffect } from "react"
 
 export function Player(song) {
 
 
+   
+
+
     const [currentTime, setCurrentTime] = useState(0)
     const [totalDuration, setTotalDuration] = useState(240)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentTime((prev) => (prev < totalDuration ? prev + 1 : prev))
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, [totalDuration])
 
     function setTime(ev){
         const time = Number(ev.target.value);
         setCurrentTime(time);
+    }
+
+    const formatTime = (time) => {
+        const minutes= Math.floor(time / 60)
+        const seconds = time % 60
+        return `${minutes}:${seconds.toString().padStart(2, "0")}`
     }
 
     return (
@@ -22,9 +40,7 @@ export function Player(song) {
                 <img src="./src/assets/Soundify-files /PrevSong.svg" />
             </button>
 
-            <button className="play-button">
-                PlayButton
-            </button>
+            <PlayButton />
 
             <button className="next-button">
                 <img src="./src/assets/Soundify-files /NextSong.svg" />
@@ -35,8 +51,11 @@ export function Player(song) {
             </button>
             </section>
        
-
+        
+            
+       
         <section className="time-line">
+            <span className="song-time">{formatTime(currentTime)}</span>
             <div>
                 <input
                     type="range"
@@ -46,6 +65,7 @@ export function Player(song) {
                     onChange={setTime}
                  />   
             </div>
+            <span className="total-time">{formatTime(totalDuration)}</span>
         
 
         </section>

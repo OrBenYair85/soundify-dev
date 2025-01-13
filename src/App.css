@@ -41,6 +41,22 @@
   color: #888;
 }
 
+.app-footer{
+  background-color: black;
+  color: #b3b3b3;
+}
+
+.app-footer h1{
+  color: white;
+}
+
+.play-button-footer{
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
 .player-btn{
   display: flex;
   flex-direction: row;
