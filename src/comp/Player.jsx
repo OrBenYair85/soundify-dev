@@ -58,6 +58,9 @@ export function Player(song) {
             <span className="song-time">{formatTime(currentTime)}</span>
             <div>
                 <input
+                    className="song-bar"
+                    name="song-bar"
+                    id="song-bar"
                     type="range"
                     min={0}
                     max={totalDuration}
