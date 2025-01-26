@@ -162,7 +162,51 @@ button {
 .song-bar::-webkit-slider-thumb:hover {
   transform: scale(1.2);
   background-color: #1ed760; 
+  justify-content: center;
+}
+
+.play-button-footer{
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.player-btn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
 }
 
 
+.player-btn img{
+  width: 24px; 
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
 
+.player-btn img:hover{
+  transform: scale(1.1);
+}
+
+.play-button-footer img {
+  width: 20px;
+  height: 20px;
+}
+
+.time-line{
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
